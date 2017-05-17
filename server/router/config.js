@@ -240,7 +240,7 @@ router.get('/auth/facebook',
       var token = jwt.sign({id: req.user.id}, secret.secret, {
           expiresIn: 1440 // expires in 24 hours
         });
-   return res.redirect('http://localhost:4200/admin/token/'+token);
+   return res.redirect('https://angular-exp.herokuapp.com/admin/token/'+token);
   });
 
   //google callback
@@ -254,7 +254,7 @@ router.get('/auth/google/callback',
           //res.json({success:true, token: token, Role: req});
           //res.header('authorization',req.user.token);
         
-    return res.redirect('http://localhost:4200/admin/token/'+token);
+    return res.redirect('https://angular-exp.herokuapp.com/admin/token/'+token);
   });
 
 
