@@ -143,7 +143,7 @@ router.post('/register',  (req,res,next)=>{
                     to: req.body.EmailId, // list of receivers
                     subject: 'SIMINTA Account Verification ✔', // Subject line
                     text: 'Hello world ?', // plain text body
-                    html: '<h1>Email Verification</h1><br /><a href="http://localhost:2000/api/token_verify/?token='+ token+'">Verify My Account</a>' // html body
+                    html: '<h1>Email Verification</h1><br /><a href="https://angular-exp.herokuapp.com/api/token_verify/?token='+ token+'">Verify My Account</a>' // html body
                     };
 
                     // send mail with defined transport object
@@ -195,7 +195,7 @@ router.get('/token_verify', (req,res)=>{
                                     {
                                     expiresIn : 2000,
                                 });
-                                return res.redirect('http://localhost:4200/admin/token/'+token);
+                                return res.redirect('https://angular-exp.herokuapp.com/admin/token/'+token);
                                   // return res.status(200).send({success: true, token: token});
                               
                           }
