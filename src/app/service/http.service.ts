@@ -14,7 +14,7 @@ export class HttpService {
   header.append('Content-Type', 'application/x-www-form-urlencoded'); 
   header.append('Authorization', 'Bearer'+ 'JWT');
   let data = 'EmailId='+value.EmailId+'&Password='+value.Password;
-  return this._http.post('http://localhost:2000/api/login', data,{headers: header})
+  return this._http.post(url+'/api/login', data,{headers: header})
   .map(res=>{ return res.json();});
 } 
  registerAuth(value){
@@ -23,7 +23,7 @@ export class HttpService {
   header.append('Content-Type', 'application/x-www-form-urlencoded'); 
   header.append('Authorization', 'Bearer'+ 'JWT');
   let data = 'EmailId='+value.EmailId+ '&Gender='+ value.Gender+ '&DOB='+value.DOB+'&Password='+value.passgroup.Password;
-  return this._http.post('http://localhost:2000/api/register', data,{headers: header})
+  return this._http.post(url+'/api/register', data,{headers: header})
   .map(res=>{ return res.json();});
 } 
   getContact(value){
@@ -33,7 +33,7 @@ export class HttpService {
     const header =  new Headers();
       header.append('Content-Type', 'application/x-www-form-urlencoded'); 
   header.append('Authorization', 'Bearer'+' '+ 'JWT'+ ' '+ token);
-   return this._http.post('http://localhost:2000/api/getDetails',{headers: header})
+   return this._http.post(url+'/api/getDetails',{headers: header})
   .map(res=>{ return res.json();});
 
   
@@ -44,7 +44,7 @@ export class HttpService {
     const header =  new Headers();
       header.append('Content-Type', 'application/x-www-form-urlencoded'); 
   header.append('Authorization', token);
-   return this._http.post('http://localhost:2000/api/getDetails',{headers: header})
+   return this._http.post(url+'/api/getDetails',{headers: header})
   .map(res=>{ return res.json();});
   }
   isLoggedIn(){
@@ -54,7 +54,7 @@ export class HttpService {
     const header =  new Headers();
       header.append('Content-Type', 'application/x-www-form-urlencoded'); 
    header.append('Authorization', token);
-   return this._http.post('http://localhost:2000/api/refresh_token',data,{headers: header});
+   return this._http.post(url+'/api/refresh_token',data,{headers: header});
   //.map(res=>  res.json())
    
   }

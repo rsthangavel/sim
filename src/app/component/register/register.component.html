@@ -40,21 +40,21 @@
                                     
                                 </div> 
                                  <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.DOB.touched && register.controls.DOB.errors) || (f.submitted && register.controls.DOB.errors)}">
-                                 <input name="someName" formControlName="DOB" [dpDayPicker]="config" />
+                                 <input name="someName" formControlName="DOB" />
                                      <label class="control-label" for="text" *ngIf="(register.controls.DOB.touched && register.controls.DOB.errors?.required) || (f.submitted && register.controls.DOB.errors?.required)">Date should not be Empty</label>
                                     <label class="control-label" for="text" *ngIf="(register.controls.DOB.touched && register.controls.DOB.errors?.pattern) || (f.submitted && register.controls.DOB.errors?.pattern)">EmailID invalid</label>
                                 </div> 
                                 <div formGroupName = "passgroup">
-                                 <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.passgroup.controls.Password.touched && register.controls.passgroup.controls.Password.errors) || (f.submitted && register.controls.passgroup.controls.Password.errors)}">
+                                 <div class="form-group has-error" [ngClass]="{'has-error': (register['controls'].passgroup['controls'].Password.touched && register['controls'].passgroup['controls'].Password.errors) || (f.submitted && register['controls'].passgroup['controls'].Password.errors)}">
                                     <input class="form-control" placeholder="Password" name="Password" type="password"  formControlName="Password">
-                                    <label class="control-label" for="text" *ngIf="(register.controls.passgroup.controls.Password.touched && register.controls.passgroup.controls.Password.errors?.required) || (f.submitted && register.controls.passgroup.controls.Password.errors?.required)">Password should not be Empty</label>
-                                    <label class="control-label" for="text" *ngIf="(register.controls.passgroup.controls.Password.touched && register.controls.passgroup.controls.Password.errors?.minlength) || (f.submitted && register.controls.passgroup.controls.Password.errors?.minlength)">Password Must be atleast 6Characters</label>
+                                    <label class="control-label" for="text" *ngIf="(register['controls'].passgroup['controls'].Password.touched && register['controls'].passgroup['controls'].Password.errors?.required) || (f.submitted && register['controls'].passgroup['controls'].Password.errors?.required)">Password should not be Empty</label>
+                                    <label class="control-label" for="text" *ngIf="(register['controls'].passgroup['controls'].Password.touched && register['controls'].passgroup['controls'].Password.errors?.minlength) || (f.submitted && register['controls'].passgroup['controls'].Password.errors?.minlength)">Password Must be atleast 6Characters</label>
                                     
                                 </div>
-                                 <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.passgroup.controls.Confirm.touched && register.controls.passgroup.invalid) || (f.submitted && register.controls.passgroup.invalid)}">
+                                 <div class="form-group has-error" [ngClass]="{'has-error': (register['controls'].passgroup['controls'].Confirm.touched && register['controls'].passgroup.invalid) || (f.submitted && register['controls'].passgroup.invalid)}">
                                     <input class="form-control" placeholder="Re-enter Password" name="Confirm" type="password"  formControlName="Confirm">
-                                    <label class="control-label" for="text" *ngIf="(register.controls.passgroup.controls.Confirm.touched && register.controls.passgroup.controls.Confirm.errors?.required) || (f.submitted && register.controls.passgroup.controls.Confirm.errors?.required)">Confirm Password should not be Empty</label>
-                                    <label class="control-label" for="text" *ngIf="(register.controls.passgroup.controls.Confirm.touched && register.controls.passgroup.invalid) || (f.submitted && register.controls.passgroup.invalid)">Password doesn't match</label>
+                                    <label class="control-label" for="text" *ngIf="(register['controls'].passgroup['controls'].Confirm.touched && register['controls'].passgroup['controls'].Confirm.errors?.required) || (f.submitted && register['controls'].passgroup['controls'].Confirm.errors?.required)">Confirm Password should not be Empty</label>
+                                    <label class="control-label" for="text" *ngIf="(register['controls'].passgroup['controls'].Confirm.touched && register['controls'].passgroup.invalid) || (f.submitted && register['controls'].passgroup.invalid)">Password doesn't match</label>
                                     
                                 </div>
                                   
