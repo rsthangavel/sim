@@ -1,5 +1,7 @@
 <body class="body-Login-back">
-
+    <div *ngIf="error">
+      {{error}}
+    </div>
     <div class="container">
        
         <div class="row">
@@ -25,19 +27,26 @@
                                     <label class="control-label" for="password" *ngIf="(login.controls.Password.touched && login.controls.Password.errors?.required) || (f.submitted && login.controls.Password.errors?.required)">Password should not be Empty</label>
                                     <label class="control-label" for="password" *ngIf="(login.controls.Password.touched && login.controls.Password.errors?.minlength) || (f.submitted && login.controls.Password.errors?.minlength)">Password should be atleast 6 characters</label>
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button class="btn btn-lg btn-success btn-block">Login</button>
+                                <button class="btn btn-lg btn-success btn-block">
+                                      <div *ngIf="login_button">
+                                   Login
+                                </div>
+                                 <div *ngIf="loading">
+                             <img src="assets/img/loading.gif" alt=""/>
+                            </div>
+                                </button>
                             </fieldset>
                         </form>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary">Login With Google</button>
-                   <button type="button" class="btn btn-primary">Login With Facebook</button>
+                <div class="row">
+                New User?<a href="register">Register Here</a>
+                </div>
+                <div class ="row">
+                <a type="button" class="btn btn-primary" href="http://localhost:2000/api/auth/google" >Login With Google</a>
+                   <a type="button" class="btn btn-primary" href="http://localhost:2000/api/auth/facebook">Login With Facebook</a>
+                </div>
             </div>
         </div>
     </div>

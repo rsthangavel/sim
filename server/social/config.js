@@ -1,13 +1,15 @@
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var db = require('../model/config.js');
+var configAuth        =  require('./keys');
+var socialGoogle = require('../model/schema/social');
+var socialFacebook = require('../model/schema/facebook');
 module.exports = function(passport){
        passport.serializeUser(function(user, done) {
            //console.log(user);
         done(null, user.id);
     });
  passport.deserializeUser(function(id, done) {
-        student.findById(id, function(err, user) {
+        register.findById('google.googleID', function(err, user) {
             done(err, user);
         });
     });
@@ -20,26 +22,26 @@ module.exports = function(passport){
     },
     function(token, refreshToken, profile, done) {
         process.nextTick(function() {
-    
+          
             // try to find the user based on their google id
-            student.findOne({ googleID : profile.id }, function(err, user) {
-                 
+            socialGoogle.findOne({ 'google.googleID' : profile.id }, function(err, user) {
+                 console.log("test");
                 if (err)
                 
-               // console.log(err);
-                   return done(null,err);
+                console.log(err);
+                   //return done(null,err);
 
                 if (user) {
-                     
+                    // console.log(user);
                     // if a user is found, log them in
                     return done(null, user);
                 } else {
                       //console.log(profile.displayName);
                       var test = Math.floor(Math.random()*100)+1;
-                      //console.log(test);
-                     var user = {studentID: test,googleID: profile.id, token: token, studentName: profile.displayName, email:profile.emails[0].value}
+                      
+                     var users = { 'google.googleID': profile.id, 'google.token': token, 'google.Name': profile.displayName, 'google.email':profile.emails[0].value}
                     // if the user isnt in our database, create a new user
-                    var newUser          = new student(user);
+                    var newUser          = new socialGoogle(users);
 
                     // set all of the relevant information
                     //newUser.googleID    = profile.id;
@@ -53,7 +55,7 @@ module.exports = function(passport){
                             console.log(err);
                         }
                          //console.log(profile.id);
-                      
+                      //console.log(newUser);
                         return done(null, newUser);
                     });
                 }
@@ -67,8 +69,8 @@ module.exports = function(passport){
         callbackURL     : configAuth.facebookAuth.callbackURL,
     },
     function(accessToken, refreshToken, profile, done){
-        console.log(profile.id);
-        student.findOne({facebookID : profile.id},function(err,user){
+       // console.log(profile.id);
+        socialFacebook.findOne({'facebook.facebookID' : profile.id},function(err,user){
             if(err){
                 console.log(err);
             }
@@ -78,9 +80,9 @@ module.exports = function(passport){
             else{
                   var test = Math.floor(Math.random()*100)+1;
                       //console.log(test);
-                     var user = {studentID: test,facebookID: profile.id, studentName: profile.displayName}
+                     var user = {'facebook.facebookID': profile.id, 'facebook.Name': profile.displayName}
                     // if the user isnt in our database, create a new user
-                    var newUser          = new student(user);
+                    var newUser          = new socialFacebook(user);
                        newUser.save(function(err) {
                         if(err){
                             console.log(err);

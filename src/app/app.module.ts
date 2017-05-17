@@ -16,6 +16,9 @@ import { RouterGuards } from './router/routerGuards';
 import { AuthService } from './service/auth.service';
 import { RegisterComponent } from './component/register/register.component';
 import { ResolveService } from './service/resolve.service';
+import { ImmutableComponent } from './component/immutable/immutable.component';
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { EmailVerificationComponent } from './component/email-verification/email-verification.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { ResolveService } from './service/resolve.service';
     NewprofessorComponent,
     NewstudentComponent,
     UserdahboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    ImmutableComponent,
+    EmailVerificationComponent
     
   ],
   imports: [
@@ -34,6 +39,7 @@ import { ResolveService } from './service/resolve.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    DpDatePickerModule,
     RouterModule.forRoot(router)
   ],
   providers: [AuthService, HttpService, RouterGuards,   ResolveService ],

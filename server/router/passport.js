@@ -1,14 +1,23 @@
 const express = require('express');
-var passport = require('passport');
+//var passport = require('passport');
 var passportJwt = require('passport-jwt');
- var ExtractJwt = passportJwt.ExtractJwt;
- var JwtStrategy = passportJwt.Strategy;
+var passportlocal = require('passport-local'),
+LocalStrategy = require('passport-local').Strategy;
+var secret = require('./secret');
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
 var jwtOptions = {}
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
-jwtOptions.secretOrKey = 'tasmanianDevil';
+jwtOptions.secretOrKey = 'test';
  module.exports = function(passport){
-       console.log(jwtOptions);
-     passport.use(new JwtStrategy(jwtOptions, function(jwt_payload, next){
+ 
+   var opts = {};
+  opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+  opts.secretOrKey = secret.secret;
+     passport.use(new JwtStrategy(opts,
+       //  {usernameField: req.body.token, passReqToCallback:true},
+         function(jwt_payload, done){
+             console.log('success');
         return done(null,true);
 
  }));

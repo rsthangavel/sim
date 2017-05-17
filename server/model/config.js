@@ -7,5 +7,6 @@ db.once("open",function(){
 
 var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
- var mongourl = 'mongodb://test:test@ds163940.mlab.com:63940/student';
-module.exports =  mongoose.connect(mongourl,options);
+ var mongourl = 'mongodb://test:test@ds139801.mlab.com:39801/sim';
+ mongoose.Promise = global.Promise;
+module.exports =  mongoose.connect(mongourl, options);

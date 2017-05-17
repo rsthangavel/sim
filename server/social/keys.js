@@ -1,9 +1,9 @@
 module.exports = {
 
     'facebookAuth' : {
-        'clientID'      : '469223673272656', // your App ID
-        'clientSecret'  : '47bde713789aed4e762368f7108082f1', // your App Secret
-        'callbackURL'   : 'https://asdes.herokuapp.com/api/auth/facebook/callback'
+        'clientID'      : '593292704199085', // your App ID
+        'clientSecret'  : 'c5972b1842cd72368923baf0d0bf85ec', // your App Secret
+        'callbackURL'   : 'http://www.localhost:2000/api/auth/facebook/callback'
     },
 
     'twitterAuth' : {
@@ -15,7 +15,7 @@ module.exports = {
     'googleAuth' : {
         'clientID'      : '681644594140-6u40flstt15k44901so7hvnoh43q7m5n.apps.googleusercontent.com',
         'clientSecret'  : 'OXYwfvElMWfB1It0j9A46Zh6',
-        'callbackURL'   : 'https://asdes.herokuapp.com/api/auth/google/callback'
+        'callbackURL'   : 'http://localhost:2000/api/auth/google/callback'
     }
 
 };

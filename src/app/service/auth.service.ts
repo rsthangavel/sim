@@ -4,18 +4,17 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-
+  routing:boolean = true;
   constructor(private _http: HttpService, private _router: Router) { }
-  isLoggedIn(){
-    if(localStorage.getItem('currentuser')){
-      alert('1');
-         this._http.isLoggedIn().subscribe(res=>{ return true;});
-         return true;
+  isLoggedIn() : boolean{
+    
+    if(localStorage.getItem('currentuser_message') && localStorage.getItem('currentuser_token')){
+       return false;
     }
-    else{
-     
-      this._router.navigate(['login/2']);
+    else{  
+      this._router.navigate(['login']);
       return true;
+     
     }
   }
 }
