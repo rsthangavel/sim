@@ -173,8 +173,8 @@ router.get('/token_verify', (req,res)=>{
         
             if(!err)
             { 
-                  console.log(decoded.EmailID);
-                userSchema.findOne({EmailId : decoded.EmailId, Active: false}, function(err,user)
+                  console.log(decoded.id);
+                userSchema.findOne({id : _id, Active: false}, function(err,user)
                 {
                     
                     if(err)
@@ -185,13 +185,13 @@ router.get('/token_verify', (req,res)=>{
                     if(user)
                     {
                     
-                       userSchema.update({ EmailId : decoded.EmailId }, { Active : true}, function(err,user)
+                       userSchema.update({ id : _id }, { Active : true}, function(err,user)
                        {
                           if(err){
                               return res.send(401);
                           }
                           if(user){
-                               var token = jwt.sign({EmailId: req.body.EmailId}, secret.secret, 
+                               var token = jwt.sign({id: user._id}, secret.secret, 
                                     {
                                     expiresIn : 2000,
                                 });
