@@ -1,5 +1,6 @@
 const express      = require('express');
 var Joi            = require('joi');
+var redis          = require('redis');
 var registerJoi    = require('../validation/register');
 var loginJoi       = require('../validation/login');
 var db             = require('../model/config');
@@ -8,6 +9,18 @@ var passport       = require('passport');
 var secret         = require('./secret');
 var userSchema     = require('../model/schema/user');
 var transporter    = require('./mailservice');
+var client         = redis.createClient();
+var  uuid          = require('uuid/v1');
+var CryptoJS       = require('crypto-js');
+
+
+
+client.on('connect', function() {
+    console.log('Redis connected');
+});
+client.on('error', function(err){
+     console.log("Error"+err);
+});
 
 require('../social/config')(passport);
 
@@ -22,6 +35,7 @@ router.use(passport.initialize());
 router.get('/', (req,res)=>{
     res.send('api working');
 });
+
 
 //user login router
 router.post('/login',(req,res, next) =>{
@@ -40,20 +54,22 @@ router.post('/login',(req,res, next) =>{
                  res.status(500).send(err);
              }
     if(user){
-        console.log(user);
+       
         if(!user.Active){
                return res.status(200).send({success: false, message: 'Email Not yet Verified'});
         }
         else{
-        console.log(user);
+      
          user.comparePassword(req.body.Password , function(err, isMatch){
                 if(err) throw err;
                 if(isMatch)
                             {
                                 var token = jwt.sign({id: user._id}, secret.secret, {
                                     expiresIn : 3600,
+                                    jwtid       : uuid()
                                  });
-                                 return res.send({success: true, token: token});
+                                 var ciphertext = CryptoJS.AES.encrypt(token, 'secret');
+                                 return res.send({success: true, token: ciphertext.toString()});
                             }
                             else{
                                   return res.status(401).send({success: false, message: 'Email or Password Wrong' });
@@ -74,32 +90,55 @@ router.post('/login',(req,res, next) =>{
 
 //refresh token for page refresh
 router.post('/refresh_token', function(req,res){
-   
+if(req.headers.authorization){
+//     var data = CryptoJS.AES.decrypt(req.headers.authorization,'security');
+// var token = data.toString(CryptoJS.enc.Utf8);
  jwt.verify(req.headers.authorization, secret.secret, function(err,decoded){
-   
+     console.log(decoded);
      if(!err){
-            userSchema.findOne({EmailId : req.body.EmailId}, function(err,user){
+          //client.set(decoded.jti, 'test');
+           client.get(decoded.jti, function(err,reply){
+               console.log(reply);
+               if(reply == 'test'){
+                     res.status(200).send('Token Expired');
+                  
+               }
+               else{
+                   client.set(decoded.jti, 'test');
+  userSchema.findOne({_id : decoded.id}, function(err,user){
             if(err){
                  res.status(500).send(err);
                 }
              if(user){
       var token = jwt.sign({id: user._id}, secret.secret, {
              expiresIn : 2000,
+             jwtid     : uuid()
          });
-        
-         res.status(200).send({success: true, token: token});
+         var ciphertext = CryptoJS.AES.encrypt(token, 'secret');
+         res.status(200).send({success: true, token: token.toString()});
                     }
         
      });
+               }
+              // console.log(err);
+                
+           });
+           //console.log(test);
+//           client.keys('*', function (err, keys) {
+//   if (err) return console.log(err);
+
+//   for(var i = 0, len = keys.length; i < len; i++) {
+//     console.log(keys[i]);
+//   }
+// });
      }
-  
      else{
       
          return res.status(401).send({success:false, message: err});
      }
     });
      
-      
+}
 });
 
 //user register with joi validator act as middleware and store data using register schema 
@@ -136,8 +175,8 @@ router.post('/register',  (req,res,next)=>{
              else{
                     var token = jwt.sign({id: user.id},'mailSecret', {
                             expiresIn : 3600,
+                            
                              });
-                             console.log(token);
                    let mailOptions = 
                    {
                     from: '"SIMINTA 👻" <thangavel.asahi@gmail.com>', // sender address
@@ -261,3 +300,4 @@ router.get('/auth/google/callback',
 
 
 module.exports =  router;
+

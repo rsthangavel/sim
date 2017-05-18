@@ -4,6 +4,7 @@ import {  ActivatedRoute, Router, Params } from '@angular/router';
 import { HttpService } from  '../../service/http.service';
 import { DatePickerComponent } from 'ng2-date-picker';
 import { Observable } from 'rxjs/Observable';
+
 export function comparePassword(group: FormGroup) {
   const pass = group.value;
   return (pass.Password === pass.Confirm) ? null /* It's good */ : {
@@ -62,7 +63,7 @@ export class RegisterComponent implements OnInit {
          this.reg_button =false;
           this._http.registerAuth(value).subscribe(res=> {
           if(res.success == true){
-
+    
             localStorage.setItem('email', res.success);
             localStorage.setItem('message', res.message);
               //this._router.navigate(['admin']); 
