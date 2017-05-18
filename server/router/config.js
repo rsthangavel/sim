@@ -128,13 +128,13 @@ router.post('/register',  (req,res,next)=>{
     else{
          //store user data
          var register = new userSchema(registervalue);
-         register.save(function(err){
+         register.save(function(err, user){
              if(err){
                  console.log(err);
                  return res.status(500).send(err);
              }
              else{
-                    var token = jwt.sign({EmailId: req.body.EmailId},'mailSecret', {
+                    var token = jwt.sign({id: user._id},'mailSecret', {
                             expiresIn : 3600,
                              });
                    let mailOptions = 
