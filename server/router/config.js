@@ -115,7 +115,7 @@ if(req.headers.authorization){
              jwtid     : uuid()
          });
          var ciphertext = CryptoJS.AES.encrypt(token, 'secret');
-         res.status(200).send({success: true, token: token.toString()});
+         res.status(200).send({success: true, token: ciphertext.toString()});
                     }
         
      });
