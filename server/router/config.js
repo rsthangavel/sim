@@ -1,6 +1,6 @@
 const express      = require('express');
 var Joi            = require('joi');
-var redis          = require('redis');
+//var redis          = require('redis');
 var registerJoi    = require('../validation/register');
 var loginJoi       = require('../validation/login');
 var db             = require('../model/config');
@@ -9,18 +9,18 @@ var passport       = require('passport');
 var secret         = require('./secret');
 var userSchema     = require('../model/schema/user');
 var transporter    = require('./mailservice');
-var client         = redis.createClient();
+//var client         = redis.createClient();
 var  uuid          = require('uuid/v1');
 var CryptoJS       = require('crypto-js');
 
 
 
-client.on('connect', function() {
-    console.log('Redis connected');
-});
-client.on('error', function(err){
-     console.log("Error"+err);
-});
+// client.on('connect', function() {
+//     console.log('Redis connected');
+// });
+// client.on('error', function(err){
+//      console.log("Error"+err);
+// });
 
 require('../social/config')(passport);
 
@@ -97,14 +97,14 @@ if(req.headers.authorization){
      console.log(decoded);
      if(!err){
           //client.set(decoded.jti, 'test');
-           client.get(decoded.jti, function(err,reply){
-               console.log(reply);
-               if(reply == 'test'){
-                     res.status(200).send('Token Expired');
+          // client.get(decoded.jti, function(err,reply){
+              
+              // if(reply == 'test'){
+                    // res.status(200).send('Token Expired');
                   
-               }
-               else{
-                   client.set(decoded.jti, 'test');
+              // }
+              // else{
+                 //  client.set(decoded.jti, 'test');
   userSchema.findOne({_id : decoded.id}, function(err,user){
             if(err){
                  res.status(500).send(err);
@@ -119,10 +119,10 @@ if(req.headers.authorization){
                     }
         
      });
-               }
+              // }
               // console.log(err);
                 
-           });
+          // });
            //console.log(test);
 //           client.keys('*', function (err, keys) {
 //   if (err) return console.log(err);
