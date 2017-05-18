@@ -134,9 +134,10 @@ router.post('/register',  (req,res,next)=>{
                  return res.status(500).send(err);
              }
              else{
-                    var token = jwt.sign({id: user._id},'mailSecret', {
+                    var token = jwt.sign({id: user.id},'mailSecret', {
                             expiresIn : 3600,
                              });
+                             console.log(token);
                    let mailOptions = 
                    {
                     from: '"SIMINTA 👻" <thangavel.asahi@gmail.com>', // sender address
@@ -170,11 +171,11 @@ router.get('/token_verify', (req,res)=>{
    {
      jwt.verify(req.query.token, 'mailSecret', function(err,decoded)
      {
-        
+            
             if(!err)
             { 
-                  console.log(decoded.id);
-                userSchema.findOne({id : decoded.id, Active: false}, function(err,user)
+                 
+                userSchema.findOne({ _id : decoded.id, Active: false}, function(err,user)
                 {
                     
                     if(err)
@@ -184,8 +185,8 @@ router.get('/token_verify', (req,res)=>{
                     }
                     if(user)
                     {
-                    
-                       userSchema.update({ id : user.id }, { Active : true}, function(err,user)
+                       console.log(user.id);
+                       userSchema.update({ _id : user.id }, { Active : true}, function(err,user)
                        {
                           if(err){
                               return res.send(401);
