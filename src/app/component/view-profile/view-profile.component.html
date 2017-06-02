@@ -1,0 +1,327 @@
+
+<div class="container-fluid col-md-offset-2">
+  <div class="row">
+    <div class="fb-profile">
+       <div class="image-upload">
+               <span class="result rounded" *ngIf="data1.image; else srcimage"  class="fb-image-lg" >
+    <img [src]="data1.image" [width]="cropperSettings1.croppedWidth" [height]="cropperSettings1.croppedHeight">
+               </span>
+               <ng-template #srcimage>
+                <img align="left" class="fb-image-lg" [src]="header_profile" alt="Header Image" width="100%" height="40%" data-toggle="modal" data-target="#header_dialog"/>
+               </ng-template>
+                <span class="result rounded" *ngIf="data2.image; else proimage" >
+    <img [src]="data2.image" align="left" class="fb-image-profile thumbnail"  [width]="cropperSettings2.croppedWidth" [height]="cropperSettings2.croppedHeight">
+               </span>
+               <ng-template #proimage>
+                 <img align="left" class="fb-image-profile thumbnail" [src]="profile_pic" alt="Profile image example" data-toggle="modal" data-target="#profile_dialog"/>
+                 </ng-template>
+       </div>         
+        <div class="fb-profile-text">
+            <h1>{{user_name }}</h1>
+            
+       
+    </div>
+  </div>
+</div> <!-- /container fluid--> 
+<div *ngIf="success" class="alert alert-success alert-dismissable" id="success-alert">
+
+  <strong>Success!</strong> {{success}}
+</div>
+<div class="container">
+      <div class="col-sm-8">
+
+      <div data-spy="scroll" class="tabbable-panel">
+        <div class="tabbable-line">
+          <ul class="nav nav-tabs ">
+            <li class="active">
+              <a href="#tab_default_1" data-toggle="tab">
+              About Her </a>
+            </li>
+            <li>
+              <a href="#tab_default_2" data-toggle="tab">
+             Education& Career</a>
+            </li>
+            <li>
+              <a href="#tab_default_3" data-toggle="tab">
+             Family Details</a>
+            </li>
+             <li>
+              <a href="#tab_default_4" data-toggle="tab">
+             Desire Partner</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab_default_1">
+ 
+              <p>
+                My daughter  is good looking, with pleasant personality, smart, well educated, from well cultural and  a religious family background. having respect in heart for others.  
+                would like to thanks you for visiting through my daughter;s profile. 
+                She has done PG in Human Resources after her graduation. 
+                At present working IN INSURANCE sector as Manager Training .
+              </p>
+              <h4>About her Family</h4>
+              <p>
+                About her family she belongs to a religious and a well cultural family background. 
+                Father - Retired from a Co-operate Bank as a Manager. 
+                Mother - she is a home maker. 
+                1 younger brother - works for Life Insurance n manages cluster. 
+              </p>
+              <h4>Education </h4>
+              <p>I have done PG in Human Resourses</p>
+              <h4>Occupation</h4>
+              <p>At present Working in Insurance sector</p>
+           
+            </div>
+            <div class="tab-pane" id="tab_default_2">
+              <p>
+                Education& Career
+              </p>
+              <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                     <label for="email">Highest Education:</label>
+                      <p> MBA/PGDM</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+              </div>
+              <div class="col-sm-6">
+                 <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+
+               </div>
+              </div>
+
+             
+           
+            </div>
+            <div class="tab-pane" id="tab_default_3">
+              <p>
+                Family Details
+              </p>
+              <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                     <label for="email">Highest Education:</label>
+                      <p> MBA/PGDM</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+              </div>
+              <div class="col-sm-6">
+                 <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+
+               </div>
+              </div>
+            </div>
+             <div class="tab-pane" id="tab_default_4">
+              <p>
+               Lifestyle
+
+              </p>
+               <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                     <label for="email">Highest Education:</label>
+                      <p> MBA/PGDM</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+              </div>
+              <div class="col-sm-6">
+                 <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+                  <div class="form-group">
+                     <label for="email">Place of Birth:</label>
+                      <p> pune, maharashtra</p>
+                 </div>
+
+               </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  </div>
+  <div class="col-sm-4">
+   <div class="panel panel-default">
+    <div class="menu_title">
+       Profile Details <img src="./assets/img/edit_icon.png" class="image" width="20px" height="20px" />
+    </div>
+      <form [formGroup]="register" #f="ngForm" (ngSubmit)="profile_update(register.value, register.valid)" role="form">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.First.touched && register.controls.First.errors) || (f.submitted && register.controls.First.errors)}">
+                                    <input class="form-control" placeholder="First Name" name="first" type="text"  formControlName="First">
+                                    <label class="control-label" for="text" *ngIf="(register.controls.First.touched && register.controls.First.errors?.required) || (f.submitted && register.controls.First.errors?.required)">First Name should not be Empty</label>
+                                    <label class="control-label" for="text" *ngIf="(register.controls.First.touched && register.controls.First.errors?.pattern) || (f.submitted && register.controls.First.errors?.pattern)">First Name is invalid</label>
+                                    
+                                </div>
+               <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.Last.touched && register.controls.Last.errors) || (f.submitted && register.controls.Last.errors)}">
+                                    <input class="form-control" placeholder="Last Name" name="last" type="text"  formControlName="Last">
+                                    <label class="control-label" for="text" *ngIf="(register.controls.Last.touched && register.controls.Last.errors?.required) || (f.submitted && register.controls.Last.errors?.required)">Last should not be Empty</label>
+                                    <label class="control-label" for="text" *ngIf="(register.controls.Last.touched && register.controls.Last.errors?.pattern) || (f.submitted && register.controls.Last.errors?.pattern)">Last Name is invalid</label>
+                                    
+                                </div>
+                 <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.Mobile.touched && register.controls.Mobile.errors) || (f.submitted && register.controls.Mobile.errors)}">
+                                    <input class="form-control" placeholder="Mobile No" name="email" type="text"  formControlName="Mobile">
+                                    <label class="control-label" for="text" *ngIf="(register.controls.Mobile.touched && register.controls.Mobile.errors?.required) || (f.submitted && register.controls.Mobile.errors?.required)">Mobile Number should not be Empty</label>
+                                    <label class="control-label" for="text" *ngIf="(register.controls.Mobile.touched && register.controls.Mobile.errors?.pattern) || (f.submitted && register.controls.Mobile.errors?.pattern)">Mobile Number is invalid</label>
+                                    
+                                </div>
+                   <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.Address.touched && register.controls.Address.errors) || (f.submitted && register.controls.Address.errors)}">
+                                    <input class="form-control" placeholder="Address" name="address" type="text"  formControlName="Address">
+                                    <label class="control-label" for="text" *ngIf="(register.controls.Address.touched && register.controls.Address.errors?.required) || (f.submitted && register.controls.Address.errors?.required)">Address should not be Empty</label>
+                                    <label class="control-label" for="text" *ngIf="(register.controls.Address.touched && register.controls.Address.errors?.pattern) || (f.submitted && register.controls.Address.errors?.pattern)">Address is invalid</label>
+                                    
+                                </div>
+                <button type="submit" class="btn btn-danger btn-block">Submit</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+  </div>
+</div>
+ <div>
+  
+<div class="container">
+  <h2>Header Update</h2>
+
+  <!-- Modal -->
+  <div class="modal fade" id="header_dialog" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Header Update</h4>
+        </div>
+        <div class="modal-body">
+     
+<div class="file-upload">
+    <span class="text">upload</span>
+    <input id="custom-input" type="file" (change)="profileChanger($event, 'header')">
+</div>
+<img-cropper #headercropper [image]="data1" [settings]="cropperSettings1" #c></img-cropper>
+<br>
+
+        <br />
+         <button for="files" class="btn btn-danger col-md-6" #imagechange data-dismiss="modal" (click)="t(c)">Save</button>      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+<div class="container">
+  <h2>Profile Update</h2>
+
+  <!-- Modal -->
+  <div class="modal fade" id="profile_dialog" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Profile Update</h4>
+        </div>
+        <div class="modal-body">
+     
+<div class="file-upload">
+    <span class="text">upload</span>
+    <input id="custom-input" type="file" (change)="profileChanger($event, 'profile')">
+</div>
+<img-cropper #profilecropper [image]="data2" [settings]="cropperSettings2"></img-cropper>
+<br>
+
+        <br />
+         <button for="files" class="btn btn-danger col-md-6" #imagechange data-dismiss="modal">Save</button>      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+

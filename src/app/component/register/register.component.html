@@ -19,8 +19,10 @@
                             <fieldset>
                                 <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.EmailId.touched && register.controls.EmailId.errors) || (f.submitted && register.controls.EmailId.errors)}">
                                     <input class="form-control" placeholder="Email ID" name="email" type="email"  formControlName="EmailId">
-                                    <label class="control-label" for="text" *ngIf="(register.controls.EmailId.touched && register.controls.EmailId.errors?.required) || (f.submitted && register.controls.EmailId.errors?.required)">EmailID should not be Empty</label>
-                                    <label class="control-label" for="text" *ngIf="(register.controls.EmailId.touched && register.controls.EmailId.errors?.pattern) || (f.submitted && register.controls.EmailId.errors?.pattern)">EmailID invalid</label>
+                                     <div invalidmessage="EmailId" >
+                                    <p *invalidtype="'required'" class="control-label form-group has-error">EmailID should not be Empty</p>
+                                    <p *invalidtype="'pattern'" class="control-label form-group has-error">EmailID invalid</p>
+                                    </div>
                                     
                                 </div>
                                   <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.Gender.touched && register.controls.EmailId.errors) || (f.submitted && register.controls.Gender.errors)}">
@@ -41,8 +43,11 @@
                                 </div> 
                                  <div class="form-group has-error" [ngClass]="{'has-error': (register.controls.DOB.touched && register.controls.DOB.errors) || (f.submitted && register.controls.DOB.errors)}">
                                  <input name="someName" formControlName="DOB" />
-                                     <label class="control-label" for="text" *ngIf="(register.controls.DOB.touched && register.controls.DOB.errors?.required) || (f.submitted && register.controls.DOB.errors?.required)">Date should not be Empty</label>
-                                    <label class="control-label" for="text" *ngIf="(register.controls.DOB.touched && register.controls.DOB.errors?.pattern) || (f.submitted && register.controls.DOB.errors?.pattern)">EmailID invalid</label>
+                                   
+                                      <div invalidmessage="DOB" >
+                                    <p *invalidtype="'required'" class="control-label form-group has-error">Date should not be Empty</p>
+                                    <p *invalidtype="'pattern'">Date invalid</p>
+                                    </div>
                                 </div> 
                                 <div formGroupName = "passgroup">
                                  <div class="form-group has-error" [ngClass]="{'has-error': (register['controls'].passgroup['controls'].Password.touched && register['controls'].passgroup['controls'].Password.errors) || (f.submitted && register['controls'].passgroup['controls'].Password.errors)}">

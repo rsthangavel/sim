@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
      let user = localStorage.getItem('currentuser_success');
     let token = localStorage.getItem('currentuser_token');
     let error = JSON.parse(localStorage.getItem('error'));
-   console.log(token);
+ 
     if(user){
       if(token){
         this._router.navigate(['admin']); 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.login = this._builder.group({
-       EmailId : [' ', Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])],
+       EmailId : ['', Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])],
        Password : ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }

@@ -5,7 +5,7 @@ SALT_WORK_FACTOR = 10;
 //schema for simcollection
 var registerSchema = mongoose.Schema
 ({
-    EmailId  :  { type:String,  index: {unique:true }},
+    EmailId  :  { type:String},
     Gender   :  { type:String },
     DOB      :  { type:String },
     Password :  { type:String },
@@ -17,7 +17,8 @@ var registerSchema = mongoose.Schema
         emails    : {}
     },    
     facebookID : { default:0 },
-    twitter  :   { default:0 }
+    twitter  :   { default:0 },
+   
 });
 
 //hash password before save to db

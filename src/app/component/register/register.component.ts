@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
      this.register = this._builder.group({
-       EmailId : [' ', Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])],
+       EmailId : ['', Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])],
        Gender : ['', Validators.compose([Validators.required])],
        DOB : ['', Validators.compose([Validators.required]), this.user.bind(this)],
        passgroup : this._builder.group({

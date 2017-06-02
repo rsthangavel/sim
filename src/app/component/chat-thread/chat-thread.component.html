@@ -1,0 +1,18 @@
+ 
+ <div *ngFor="let msg of messages">
+ <li class="left clearfix">
+                                    <span class="chat-img pull-left">
+                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <strong class="primary-font">{{msg.Name}}</strong>
+                                            <small class="pull-right text-muted">
+                                                <i class="fa fa-clock-o fa-fw"></i>{{ now - msg.Date}} mins ago</small>
+                                        </div>
+                                        <p>
+                                          {{msg.text}}
+                                        </p>
+                                    </div>
+                                </li>
+ </div>

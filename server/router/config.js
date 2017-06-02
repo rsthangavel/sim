@@ -1,27 +1,33 @@
 const express      = require('express');
-var Joi            = require('joi');
-//var redis          = require('redis');
-var registerJoi    = require('../validation/register');
-var loginJoi       = require('../validation/login');
-var db             = require('../model/config');
+var Joi            = require('joi'); 
+var redis          = require('redis');
+var registerJoi    = require('../validation/register'); //Register Router Parameter Validation
+var loginJoi       = require('../validation/login');  //Login Router Parameter Validation
+var db             = require('../model/config');    //Connection Esatblished mongoDB
 var jwt            = require('jsonwebtoken');
 var passport       = require('passport');
-var secret         = require('./secret');
-var userSchema     = require('../model/schema/user');
-var transporter    = require('./mailservice');
-//var client         = redis.createClient();
+var profile        = require('./profile');
+var secret         = require('./secret');   //JWT Secret code
+var userSchema     = require('../model/schema/user'); //User model
+var transporter    = require('./mailservice'); //Account Confirmation Mail
+var client         = redis.createClient('redis://thangavel:570761dba9862bd21056c9f095393443@50.30.35.9:3781/'); //online Redis db
 var  uuid          = require('uuid/v1');
 var CryptoJS       = require('crypto-js');
+//var homeurl = 'http://localhost:4200/';
+var homeurl = 'https://angular-exp.herokuapp.com/';
 
 
-
-// client.on('connect', function() {
-//     console.log('Redis connected');
-// });
-// client.on('error', function(err){
-//      console.log("Error"+err);
-// });
-
+ client.on('connect', function() {
+      console.log('Redis connected');
+  });
+  client.on('error', function(err){
+       console.log("Error"+err);
+ });
+// client.set('test', 'test');
+// client.get('test',function(err,reply){
+//     console.log(reply);
+//     console.log(err);
+// })
 require('../social/config')(passport);
 
 
@@ -29,16 +35,18 @@ require('../social/config')(passport);
 
 require('./passport')(passport);
 const router = express.Router();
+
 router.use(passport.initialize());
 
 //router
 router.get('/', (req,res)=>{
     res.send('api working');
 });
-
+router.use('/user', profile);
 
 //user login router
 router.post('/login',(req,res, next) =>{
+   
     var loginvalue = { EmailId : req.body.EmailId, Password : req.body.Password};
      Joi.validate(loginvalue, loginJoi, function(err,value){
       if(!err){
@@ -183,7 +191,7 @@ router.post('/register',  (req,res,next)=>{
                     to: req.body.EmailId, // list of receivers
                     subject: 'SIMINTA Account Verification ✔', // Subject line
                     text: 'Hello world ?', // plain text body
-                    html: '<h1>Email Verification</h1><br /><a href="https://angular-exp.herokuapp.com/api/token_verify/?token='+ token+'">Verify My Account</a>' // html body
+                    html: '<h1>Email Verification</h1><br /><a href="http://localhost:2000/api/token_verify/?token='+ token+'">Verify My Account</a>' // html body
                     };
 
                     // send mail with defined transport object
@@ -225,7 +233,7 @@ router.get('/token_verify', (req,res)=>{
                     if(user)
                     {
                        console.log(user.id);
-                       userSchema.update({ _id : user.id }, { Active : true}, function(err,user)
+                       userSchema.update({ _id : user.id }, { Active : false}, function(err,user)
                        {
                           if(err){
                               return res.send(401);
@@ -235,7 +243,9 @@ router.get('/token_verify', (req,res)=>{
                                     {
                                     expiresIn : 2000,
                                 });
-                                return res.redirect('https://angular-exp.herokuapp.com/admin/token/'+token);
+                                  var ciphertext = CryptoJS.AES.encrypt(token, 'secret');
+        // res.status(200).send({success: true, token: ciphertext.toString()});
+                                return res.redirect(homeurl+'admin/token/?token='+ciphertext.toString());
                                   // return res.status(200).send({success: true, token: token});
                               
                           }
@@ -243,7 +253,7 @@ router.get('/token_verify', (req,res)=>{
                      }
                      else
                      {
-                         res.status(200).send("Token Expired or Invalid");
+                         res.status(401).send({success: "false", message:"Token Expired or Invalid"});
                      }
                 });
         //return res.status(200).send({success: false, message: 'Email Already Registered with us'});
@@ -280,7 +290,7 @@ router.get('/auth/facebook',
       var token = jwt.sign({id: req.user.id}, secret.secret, {
           expiresIn: 1440 // expires in 24 hours
         });
-   return res.redirect('https://angular-exp.herokuapp.com/admin/token/'+token);
+   return res.redirect(homeurl+'admin/token/'+token);
   });
 
   //google callback
@@ -294,7 +304,7 @@ router.get('/auth/google/callback',
           //res.json({success:true, token: token, Role: req});
           //res.header('authorization',req.user.token);
         
-    return res.redirect('https://angular-exp.herokuapp.com/admin/token/'+token);
+    return res.redirect(homeurl+'admin/token/'+token);
   });
 
 

@@ -1,0 +1,42 @@
+
+<div id="page-wrapper">
+
+            <div class="row">
+                <!-- Page Header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">Google Map</h1>
+                </div>
+                <!--End Page Header -->
+            </div>
+            <div class="container">
+      <h1>Angular 2 + Google Maps Places Autocomplete</h1>
+      <div class="form-group">
+        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+      </div>
+      
+      <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+        <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude"></sebm-google-map-marker>
+      </sebm-google-map>
+    </div>
+      <br />
+   <h1>constant Location</h1>
+          <sebm-google-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="mapClicked($event)">
+     <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [label]="'M'" >  </sebm-google-map-marker>
+   </sebm-google-map>
+   <br />
+   <h1>Draggable</h1>
+            <sebm-google-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+     <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [label]="'M'" [markerDraggable]="true" (dragEnd)="output($event)">
+     </sebm-google-map-marker>
+   </sebm-google-map>
+   <br />
+   <h1>Circle</h1>
+     <sebm-google-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+     <sebm-google-map-circle [latitude]="latitude" [longitude]="longitude" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true">
+     </sebm-google-map-circle>
+   </sebm-google-map>
+ 
+    </div>
+   
+
+       

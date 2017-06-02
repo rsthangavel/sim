@@ -1,0 +1,21 @@
+
+<div class="container-fluid col-md-offset-6">
+  <div class="row">
+ Select Year:   
+ <select data-placeholder="Choose a country..."  style="width:350px;"  class="multi col-md-offset-6" multiple="multiple" >
+         <option  *range="[1990,2000]; let num" >{{num}}</option>
+</select>
+</div>
+<span *ngIf="_selectedFields">
+Selected Fields:{{_selectedFields | json}}
+</span>
+  <div class="row">
+ Select Date:   
+<input type="text" class="chosen" readonly="true"/>
+</div>
+  <div class="row">
+ Select Date:   
+<div class="full"></div>
+</div>
+
+</div>

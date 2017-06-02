@@ -17,9 +17,6 @@ export class RouterGuards implements CanActivate{
   }
   }
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean>{
-    
-    
-      
         return this._http.isLoggedIn().map(
           (res) =>{
             this.test = res.json();
